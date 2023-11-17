@@ -1,0 +1,30 @@
+@mixin typography(
+  $family,
+  $style,
+  $weight,
+  $size,
+  $height,
+  $color,
+  $align,
+  $spacing
+) {
+  font-family: $family;
+  font-style: $style;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $height;
+  color: $color;
+  text-align: $align;
+  letter-spacing: $spacing;
+}
+//display flex
+
+@mixin d-f($dir, $just, $align, $colG, $rowG) {
+  display: flex !important;
+  flex-direction: $dir;
+  justify-content: $just;
+  align-items: $align;
+  column-gap: $colG;
+  row-gap: $rowG;
+}
+
