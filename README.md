@@ -9,7 +9,8 @@ This application has been developed to help admin to manage tabluar data and hav
 
 First I focused on login validation ant it was my Priority developing this project. then I tested and designed login page.
 my second priority was fetching data and display important info in a table. this table has a pagination and search box. Firstly I worked of datafetching and then I attampted to work on pagination.then I style the table to look a bit nicer✨. Then I worked on search feature. 
-but unfortunately I ran out of the time to test table and its corresponding components!
+but unfortunately I ran out of the time to complete testing table and its corresponding components!
+
 ## stacks
 reactjs
 Typescript
