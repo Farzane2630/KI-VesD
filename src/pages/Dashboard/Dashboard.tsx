@@ -1,7 +1,6 @@
 import React from 'react'
+import Table from '../../Components/Table/CustomTable'
 
 export default function Dashboard() {
-  return (
-    <div>Dashboard</div>
-  )
+  return <Table />
 }

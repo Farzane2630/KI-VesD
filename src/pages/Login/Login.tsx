@@ -16,7 +16,7 @@ const Login: React.FC = () => {
          navigate("/dashboard");
       }
       else {
-         setError('Username or Password in invalid!')
+         setError('Username or Password is invalid!')
       }
    };
    return (

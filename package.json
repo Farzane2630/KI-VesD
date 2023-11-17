@@ -14,6 +14,7 @@
   "dependencies": {
     "-": "^0.0.1",
     "@types/testing-library__jest-dom": "^6.0.0",
+    "json-server": "^0.17.4",
     "jsonwebtoken": "^9.0.2",
     "jsonwebtoken-promisified": "^1.0.3",
     "node-stdlib-browser": "^1.2.0",

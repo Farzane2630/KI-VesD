@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken-promisified';
 
-const secretKey = 'KiVesb'; 
+const secretKey = 'KiVesd'; 
 
 // create a token
 const generateToken = async (username: string): Promise<string> => {
@@ -39,5 +39,5 @@ export const getToken = (): string | null => {
 };
 
 const validateUser = (username: string, password: string): boolean => {
-   return username === 'thisisadmin' && password === 'KiVesb';
+   return username === 'thisisadmin' && password === 'KiVesd';
 };
