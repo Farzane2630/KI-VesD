@@ -1,4 +1,4 @@
-import Table from '../../Components/Table/CustomTable'
+import Table from '../../Components/Table/Table'
 
 export default function Dashboard() {
   return <Table />
