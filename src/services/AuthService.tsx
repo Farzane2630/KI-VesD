@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken-promisified';
 
 const secretKey = 'KiVesd'; 
 
-// create a token
+// create the token
 const generateToken = async (username: string): Promise<string> => {
    const token = await jwt.sign({ username }, secretKey, { expiresIn: '1h' });
    return token;

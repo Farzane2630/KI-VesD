@@ -1,12 +1,4 @@
 {
-   "authenticate": {
-      "username": "",
-      "passwrd": ""
-   },
-   "admin": [{
-      "username": "thisisadmin",
-      "passwrd": "KiVesd"
-   }],
   "users": [
     {
       "id": 1,
