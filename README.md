@@ -7,12 +7,16 @@
 
 This application has been developed to help admin to manage tabluar data and have control over themin and costomization work-flow.
 
+First I focused on login validation ant it was my Priority developing this project. then I tested and designed login page.
+my second priority was fetching data and display important info in a table. this table has a pagination and search box. Firstly I worked of datafetching and then I attampted to work on pagination.then I style the table to look a bit nicer✨. Then I worked on search feature. 
+but unfortunately I ran out of the time to test table and its corresponding components!
 ## stacks
 reactjs
 Typescript
 Sass
 jest
 react-testing-liberary
+json-server as database
 The environment has been set using **Vi[](https://vitejs.dev/)te**. And as routing I have made the use of **react-router-dom** package.
 
 ## Table of Contents
@@ -29,19 +33,26 @@ The environment has been set using **Vi[](https://vitejs.dev/)te**. And as routi
 
 **Test** --> `pnpm run test` or `pnpm test`
 
+**run server** --> `json-server --watch db.json --port 300`
+
+**NOTE**
+only valid username: "thisisadmin"
+only valid password: "KiVesb"
+
 ## Folder Structure
 
 **src/Components:** contains Components of this project.
 
 custom components are into _src/Components/CustomComponent_ ,
 
+
+// I ran out of time and couldn`t develop layout
 **src/Layout:**
 
 In this folder we have a MainLayout folder which contains the main layout for the panel (sidebar, main content and metadata). The other folder named meradata stores metadata`s footer and header of the MainLayout component. 
 
 **src/pages:**
-
-Per every menu-item we have a folder with a name as exact as the "menu item title".  
+It containes pages of this app.
 
 **src/styls:**
 
@@ -54,7 +65,6 @@ in **variables.scss**
 the most used _colors_ are stored as variables and are accessibe in all .scss files.
 
 **src/Routes.tsx:**
-
 Indicates all internal routes and navigation routes in this SPA application.
 
 
