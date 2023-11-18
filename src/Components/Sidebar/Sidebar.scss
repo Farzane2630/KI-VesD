@@ -1,0 +1,54 @@
+@use "/src/styles/mixins.scss";
+
+// Sidebar
+.sidebar {
+  @include mixins.d-f(column, flex-start, flex-start, _, 20px);
+  @include mixins.small-screen() {
+    z-index: 100000;
+    width: 100%;
+  }
+  width: 25%;
+  height: 100vh;
+  padding: 8px 16px;
+}
+
+// ColorPallete
+.container {
+  @include mixins.d-f(column, flex-start, center, _, _);
+  width: fit-content;
+  height: fit-content !important;
+  margin: auto;
+  background-color: #6764640f;
+  padding: 8px;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+  .title {
+    @include mixins.typography(
+      "Courier New",
+      normal,
+      600,
+      14px,
+      _,
+      #290707cc,
+      center,
+      _
+    );
+  }
+
+  .color-pllate {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+
+    .color-unit {
+      width: 20px;
+      height: 20px;
+      border: 0.5 solid #00000032;
+      border-radius: 100%;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,94 +1,105 @@
 @use "/src/styles/mixins.scss";
 @import "/src/styles/variables.scss";
 
-.App {
-  font-family: sans-serif;
-  position: relative;
-  width: 80vw;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 30px;
-  color: $primaryGreen;
-}
-  .heading {
+.table {
+  @include mixins.d-f(column, center, center, _, _);
+
+  th {
+    text-align: left;
+    padding: 8px;
+    background-color: 1px solid #ffffff;
     color: $primaryGreen;
-    border-bottom: 1px solid $primaryGreen;
-    margin-bottom: 30px;
-    padding-bottom: 10px;
   }
 
-  input {
-    width: 40%;
-    min-width: 200px;
-    border-radius: 10px;
-    border: 2px solid $primaryGreen;
-    padding: 10px;
-    font-size: 14px;
-  }
-
-  button {
-    height: 40px;
-    border-radius: 4px;
-    margin-top: 10px;
-    font-size: 15px;
-    display: inline-block;
-    text-align: center;
-    user-select: none;
-    font-weight: 600;
-    border-radius: 4px;
-    color: #ffffff;
-    border: 1px solid $primaryGreen;
-    background-color: $primaryGreen;
+  .select {
     cursor: pointer;
-    margin: 0px 15px;
-    min-width: 100px;
-
-    &:hover {
-      background: $primaryGreen;
-      color: #ffffff;
+    border: none;
+    background-color: transparent;
+    &:focus {
+      border: none;
+      outline: unset;
     }
   }
 
-  table {
-    width: 100%;
-    padding: 1em;
-    margin: 20px 0;
-   //  border-collapse: collapse;
-   border: 2px solid #ccc;
-    box-shadow: 0 1px 2px 0 #c6e8c9;
+  option{
+    background-color: $fadeGreen;
+    width: inherit;
+    padding: 4px;
+  }
+}
+.heading {
+  color: $primaryGreen;
+  border-bottom: 1px solid $primaryGreen;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+}
 
-    thead {
-      background-color: #caf0ec;
-      font-size: 16px;
-    }
+input {
+  width: 40%;
+  min-width: 200px;
+  border-radius: 10px;
+  border: 2px solid $primaryGreen;
+  padding: 10px;
+  font-size: 14px;
+}
 
-    th {
-      text-align: left;
-      padding: 8px;
-      background-color: 1px solid #ffffff;
-      color: $primaryGreen;
-    }
+button {
+  height: 40px;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-size: 15px;
+  display: inline-block;
+  text-align: center;
+  user-select: none;
+  font-weight: 600;
+  border-radius: 4px;
+  color: #ffffff;
+  border: 1px solid $primaryGreen;
+  background-color: $primaryGreen;
+  cursor: pointer;
+  margin: 0px 15px;
+  min-width: 100px;
 
-    td {
-      text-align: left;
-      padding: 8px;
-    }
+  &:hover {
+    background: $primaryGreen;
+    color: #ffffff;
+  }
+}
 
-    tr {
-      height: 50px;
+table {
+  @include mixins.small-screen {
+   max-width: 100vw; 
+  }
+  width: 100%;
+  padding: 0;
+  margin: 20px 0;
+  border: 2px solid #ccc;
+  box-shadow: 0 1px 2px 0 #c6e8c9;
 
-      &:nth-child(even) {
-        background-color: #e0e0e0;
-      }
-    }
+  thead {
+    background-color: $primaryGreen;
+    font-size: 16px;
   }
 
-  .pagination {
-   @include mixins.d-f(column, center, flex-start, 0, 6px );
-   
-   .page-btn-wrapper{
-      @include mixins.d-f(row, flex-start, center, 0, 4px );
-      flex-wrap: wrap;
-
-   }
+  td {
+    text-align: left;
+    padding: 8px;
   }
+
+  tr {
+    height: 50px;
+
+    &:nth-child(even) {
+      background-color: $fadeGreen;
+    }
+  }
+}
+
+.pagination {
+  @include mixins.d-f(column, center, flex-start, 0, 6px);
+
+  .page-btn-wrapper {
+    @include mixins.d-f(row, flex-start, center, 0, 4px);
+    flex-wrap: wrap;
+  }
+}
