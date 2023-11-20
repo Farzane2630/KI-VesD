@@ -1,9 +1,9 @@
 import { UsersType } from '../Shared/Types'
 
 function Pagination({
-   currentPage, setCurrentPage, paginationBtn, paginate, users, postsPerPage, paginationFn
+   currentPage, setCurrentPage, paginationBtns, paginate, users, postsPerPage, paginationFn
 }: {
-   currentPage: number, setCurrentPage: Function, paginationBtn: number[], paginate: Function, users: UsersType, postsPerPage: number, paginationFn: Function
+   currentPage: number, setCurrentPage: Function, paginationBtns: number[], paginate: Function, users: UsersType, postsPerPage: number, paginationFn: Function
 }) {
    return (
       <div className="pagination">
@@ -15,7 +15,7 @@ function Pagination({
          </button>
 
          <div className="page-btn-wrapper">
-            {paginationBtn.map((number, index) => (
+            {paginationBtns.map((number, index) => (
                <button
                   className={currentPage === number ? "pageBtns" : undefined}
                   key={index}

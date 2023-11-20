@@ -5,17 +5,44 @@ import { UsersType } from "../Shared/Types";
 import { useMediaQuery } from "../../Hooks/useMediaQuery";
 
 export default function Table() {
-   const sm = useMediaQuery(900)
+   const md = useMediaQuery(1100)
+   const lastIndex = md ? 4 : 6
    const [users, setUsers] = useState<UsersType>([])
-   const [tableCell, settableCell] = useState("")
-   const [headerIndex, setHeaderIndex] = useState<number>(0)
-   const lastIndex = sm ? 5 : 6
 
-   useEffect(() => {
-      console.log("index=", headerIndex);
-      console.log("tablecell=", tableCell);
+   // store header value
+   const [header0, setHeader0] = useState<string | null>(null);
+   const [header1, setHeader1] = useState<string | null>(null);
+   const [header2, setHeader2] = useState<string | null>(null);
+   const [header3, setHeader3] = useState<string | null>(null);
+   const [header4, setHeader4] = useState<string | null>(null);
+   const [header5, setHeader5] = useState<string | null>(null);
 
-   }, [tableCell, headerIndex])
+
+   function handleSelectHeader(e: any, index: number) {
+      switch (index) {
+         case 0:
+            setHeader0(dataList[e.target.options.selectedIndex - 1].id);
+            break;
+         case 1:
+            setHeader1(dataList[e.target.options.selectedIndex - 1].id);
+            break;
+         case 2:
+            setHeader2(dataList[e.target.options.selectedIndex - 1].id);
+            break;
+         case 3:
+            setHeader3(dataList[e.target.options.selectedIndex - 1].id);
+            break;
+         case 4:
+            setHeader4(dataList[e.target.options.selectedIndex - 1].id);
+            break;
+         case 5:
+            setHeader5(dataList[e.target.options.selectedIndex - 1].id);
+            break;
+         default:
+            break;
+      }
+   }
+
 
    useEffect(() => {
       fetch(' http://localhost:3000/users')
@@ -31,13 +58,13 @@ export default function Table() {
    const [currentPage, setCurrentPage] = useState<number>(1);
    const [postsPerPage, setPostsPerPage] = useState<number>(60);
 
-   let paginationBtn: number[] = [];
+   let paginationBtns: number[] = [];
 
    const indexOfLastPost = currentPage * postsPerPage;
    const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
    for (let i = 1; i <= Math.ceil(users.length / (postsPerPage ? postsPerPage : users.length)); i++) {
-      paginationBtn.push(i);
+      paginationBtns.push(i);
    }
 
    const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
@@ -75,15 +102,10 @@ export default function Table() {
                   {dataList.slice(0, lastIndex).map((data, index) => (
                      <th key={index}>
                         <select className="select"
-                           onChange={e => {
-                              setHeaderIndex(index)
-                              settableCell(e.target.value)
-
-                           }}
-                        >
-                           <option value="">{data.id}</option>
+                           onChange={e => handleSelectHeader(e, index)}>
+                           <option value="">{data.value}</option>
                            {dataList.map((title, index) => (
-                              <option key={index}>{title.id}</option>
+                              <option key={index}>{title.value}</option>
                            ))}
                         </select>
                      </th>
@@ -102,13 +124,17 @@ export default function Table() {
                   .slice(indexOfFirstPost, indexOfLastPost)
                   .map((user, index) => (
                      <tr key={index}>
-                        <td>{index === headerIndex && user[tableCell!] || user.id}</td>
-                        <td>{user[tableCell!] || user.name}</td>
-                        <td>{user[tableCell!] || user.entry_date}</td>
-                        <td>{user[tableCell!] || user.salary}</td>
-                        <td>{user[tableCell!] || `$ ${user.salary && (parseFloat((user.salary).replace(/[^\d.]/g, '')) / 12).toFixed(3)}`}</td>
+                        <td>{header0 ? user[header0] : user.id}</td>
+                        <td>{header1 ? user[header1] : user.name}</td>
+                        <td>{header2 ? user[header2] : user.entry_date}</td>
+                        <td>{header3 ? user[header3] : user.salary}</td>
                         {
-                           !sm ? <td>{user[tableCell!] || user.address} </td> : ""
+                           !md ?
+                              <>
+                                 <td>{header4 ? user[header4] : `$ ${(parseFloat((user.salary).replace(/[^\d.]/g, '')) / 12).toFixed(3)}`}</td>
+                                 <td>{header5 ? user[header5] : user.address} </td>
+                              </>
+                              : ""
                         }
 
                      </tr>
@@ -118,7 +144,7 @@ export default function Table() {
          <Pagination
             paginate={paginate}
             paginationFn={paginationFn}
-            paginationBtn={paginationBtn}
+            paginationBtns={paginationBtns}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             postsPerPage={postsPerPage}
@@ -127,3 +153,4 @@ export default function Table() {
       </main>
    );
 }
+
