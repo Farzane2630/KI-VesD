@@ -7,19 +7,21 @@
     z-index: 100000;
     width: 100%;
   }
-  width: 25%;
-  height: 100vh;
+  width: fit-content;
+  border-right: 2px solid #24242432;
+  height: inherit !important;
   padding: 8px 16px;
 }
 
 // ColorPallete
 .container {
   @include mixins.d-f(column, flex-start, center, _, _);
-  width: fit-content;
+  width: 170px;
   height: fit-content !important;
   margin: auto;
-  background-color: #6764640f;
+  background-color: #67646417;
   padding: 8px;
+  margin: 0;
   border-radius: 16px;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;

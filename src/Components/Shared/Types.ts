@@ -1,6 +1,6 @@
 export type ContentType = {
-      id: String,
-      color: String
+      id: string,
+      color: string
    }[]
 
    export type UsersType = {

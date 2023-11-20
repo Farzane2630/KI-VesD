@@ -1,7 +1,7 @@
 @use "/src/styles/mixins.scss";
 
 .dashboard{
-   @include mixins.d-f(row, center, flex-start, _, _);
+   @include mixins.d-f(row, flex-start, flex-start, _, _);
    width: 100%;
 
 }

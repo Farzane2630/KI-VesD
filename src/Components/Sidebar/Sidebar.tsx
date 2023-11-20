@@ -13,29 +13,29 @@ const bg: ContentType = [
    { id: "4", color: "#fefbd8" },
    { id: "9", color: "#b0aac0" },
 ]
-const borderColers: ContentType = [
-   { id: "1", color: "#ff7b25" },
-   { id: "2", color: "#7a3b2e" },
-   { id: "3", color: "#622569" },
-   { id: "5", color: "#c83349" },
-   { id: "6", color: "#3b3a30" },
-   { id: "7", color: "#4f3222" },
-   { id: "8", color: "#667292" },
-   { id: "4", color: "#d64161" },
-   { id: "9", color: "#588c7e" },
+const headerColers: ContentType = [
+   { id: "1", color: "#c08cd5" },
+   { id: "2", color: "#e6aaa3" },
+   { id: "3", color: "#adbd76" },
+   { id: "5", color: "#b1ef95" },
+   { id: "6", color: "#ec94e1" },
+   { id: "7", color: "#62ab91" },
+   { id: "8", color: "#dfc3db" },
+   { id: "4", color: "#cdc9a2" },
+   { id: "9", color: "#98c8a6" },
 ]
 const fontColor: ContentType = [
-   { id: "1", color: "#3b3a30" },
+   { id: "1", color: "white" },
    { id: "2", color: "#563f46" },
-   { id: "3", color: "#000" }
+   { id: "3", color: "red" }
 ]
 
 export default function Sidebar() {
    return (
       <aside className="sidebar">
-         <ColorPallete content={bg} customBorder="1px solid #000" title="Background Color Pallate" />
-         <ColorPallete content={borderColers} customBorder="1px dashed #fff" title="Border Color Pallate" />
-         <ColorPallete content={fontColor} customBorder="1px dashed #fff" title="Font Color Pallate" />
+         <ColorPallete  content={bg} customBorder="1px solid #000" title="Background Color Pallate" />
+         <ColorPallete  content={headerColers} customBorder="1px dashed #fff" title="Header Backgroun Color Pallate" />
+         <ColorPallete  content={fontColor} customBorder="1px dashed #fff" title="Font Color Pallate" />
       </aside>
    )
 }

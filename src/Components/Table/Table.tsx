@@ -1,13 +1,16 @@
 import "./Table.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Pagination from "./Pagination";
 import { UsersType } from "../Shared/Types";
 import { useMediaQuery } from "../../Hooks/useMediaQuery";
+import StyleContext from "../../Hooks/useContext";
 
 export default function Table() {
    const md = useMediaQuery(1100)
    const lastIndex = md ? 4 : 6
    const [users, setUsers] = useState<UsersType>([])
+
+   const style = useContext(StyleContext)
 
    // store header value
    const [header0, setHeader0] = useState<string | null>(null);
@@ -80,7 +83,7 @@ export default function Table() {
    };
    // pagination functions 👆
 
-
+//header options
    const dataList = [
       { id: "id", value: "ID" }, { id: "name", value: "Name" }, { id: "entry_date", value: "Entry Date" },
       { id: "salary", value: "Annual Salary" },
@@ -91,13 +94,14 @@ export default function Table() {
       { id: "favorite_food", value: "Favorite Food" }
    ]
 
-
    return (
       <main className="table">
          <input type="search" placeholder="Search..." onChange={searchFn} />
-         <table>
+         <table style={{ color: style.fontColor ? style.fontColor : "#000" }}>
             <thead>
-               <tr>
+               <tr
+                style={{ backgroundColor: style.headerColor ? style.headerColor : "", 
+                color: style.fontColor ? style.fontColor : "#000" }}>
 
                   {dataList.slice(0, lastIndex).map((data, index) => (
                      <th key={index}>
@@ -123,7 +127,9 @@ export default function Table() {
                   )
                   .slice(indexOfFirstPost, indexOfLastPost)
                   .map((user, index) => (
-                     <tr key={index}>
+                     <tr key={index} 
+                     style={{ backgroundColor: index % 2 === 0 && style.backgroundColor ? style.backgroundColor : "",
+                      color: style.fontColor ? style.fontColor : "#000" }}>
                         <td>{header0 ? user[header0] : user.id}</td>
                         <td>{header1 ? user[header1] : user.name}</td>
                         <td>{header2 ? user[header2] : user.entry_date}</td>
