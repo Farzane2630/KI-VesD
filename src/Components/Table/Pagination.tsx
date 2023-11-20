@@ -19,7 +19,7 @@ function Pagination({
    paginationFn: Function;
 }) {
    const lastPage = Math.ceil(users.length / postsPerPage);
-   const totalPagesToShow = 4;
+   const totalPagesToShow = 3;
    const [showNextBtn, setShowNextBtn] = useState<boolean>(false)
 
    return (
@@ -49,18 +49,17 @@ function Pagination({
                         >
                            {number}
                         </button>
-                     ))}
-                     {showNextBtn &&
-                        <button
-                           onClick={() => {
-                              currentPage < lastPage &&
-                                 paginate(currentPage + 1)
-                              setShowNextBtn(true)
 
-                           }}
-                        >
-                           {currentPage < totalPagesToShow ? currentPage + 1 : currentPage}
-                        </button>
+                     ))}
+                     ...
+                     {showNextBtn &&
+                        <>
+                           <button
+                              onClick={() => { currentPage < lastPage && setShowNextBtn(true) }} >
+                              {currentPage}
+                           </button>
+                           ...
+                        </>
                      }
                      <button onClick={() => paginate(lastPage)}>{lastPage}</button>
 
@@ -84,13 +83,28 @@ function Pagination({
          >
             Next
          </button>
-
-         <input
-            type="text"
-            min="1"
-            value={postsPerPage}
-            onChange={(e) => paginationFn(e)}
-         />
+         <div className="input-wrapper">
+            <div className="search-input">
+               <label>search page:</label>
+               <input
+                  className='input'
+                  type="text"
+                  min="1"
+                  value={currentPage}
+                  onChange={(e) => paginate(e.target.value ? e.target.value : currentPage)}
+               />
+            </div>
+            <div className="search-input">
+               <label>set page limit: </label>
+               <input
+                  className='input'
+                  type="text"
+                  min="1"
+                  value={postsPerPage}
+                  onChange={(e) => paginationFn(e)}
+               />
+            </div>
+         </div>
       </div>
    );
 }

@@ -59,7 +59,7 @@ export default function Table() {
 
    // pagination functions 👇
    const [currentPage, setCurrentPage] = useState<number>(1);
-   const [postsPerPage, setPostsPerPage] = useState<number>(60);
+   const [postsPerPage, setPostsPerPage] = useState<number>(10);
 
    let paginationBtns: number[] = [];
 
@@ -96,7 +96,7 @@ export default function Table() {
 
    return (
       <main className="table">
-         <input type="search" placeholder="Search..." onChange={searchFn} />
+         <input className="input" type="search" placeholder="Search..." onChange={searchFn} />
          <table style={{ color: style.fontColor ? style.fontColor : "#000" }}>
             <thead>
                <tr
