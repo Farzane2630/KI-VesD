@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { UsersType } from '../Shared/Types';
 
 function Pagination({
    currentPage,
-   setCurrentPage,
    paginationBtns,
    paginate,
    users,
@@ -11,7 +10,6 @@ function Pagination({
    paginationFn,
 }: {
    currentPage: number;
-   setCurrentPage: Function;
    paginationBtns: number[];
    paginate: Function;
    users: UsersType;

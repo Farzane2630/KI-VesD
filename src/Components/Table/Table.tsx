@@ -10,7 +10,7 @@ export default function Table() {
    const lastIndex = md ? 4 : 6
    const [users, setUsers] = useState<UsersType>([])
 
-   const style = useContext(StyleContext)
+   const styles = useContext(StyleContext)
 
    // store header value
    const [header0, setHeader0] = useState<string | null>(null);
@@ -83,29 +83,28 @@ export default function Table() {
    };
    // pagination functions 👆
 
-//header options
+   //header options
    const dataList = [
       { id: "id", value: "ID" }, { id: "name", value: "Name" }, { id: "entry_date", value: "Entry Date" },
-      { id: "salary", value: "Annual Salary" },
-      { id: "monthly_salary", value: "Monthly Salary" }, { id: "address", value: "Address" }, { id: "phone", value: "Phone" },
-      { id: "Experience Score", value: "Experience Score" }, { id: "pk_dataset", value: "pk Dataset" },
-      { id: "region", value: "Region" }, { id: "country", value: "Country" }, { id: "latlang", value: "latlang" },
-      { id: "personal_quote", value: "Personal Qoutes" }, { id: "birthday", value: "Birthday" },
-      { id: "favorite_food", value: "Favorite Food" }
+      { id: "salary", value: "Annual Salary" }, { id: "address", value: "Address" }, { id: "phone", value: "Phone" },
+      { id: "experience_score", value: "Experience Score" }, { id: "pk_dataset", value: "pk Dataset" },
+      { id: "region", value: "Region" }, { id: "country", value: "Country" }, { id: "latlng", value: "latlng" },
+      { id: "personal_quote", value: "Personal Qoutes" }, { id: "birthday", value: "Birthday" }, { id: "favorite_food", value: "Favorite Food" }
    ]
 
    return (
       <main className="table">
-         <input className="input" type="search" placeholder="Search..." onChange={searchFn} />
-         <table style={{ color: style.fontColor ? style.fontColor : "#000" }}>
+         <input data-testid="select" className="input" type="search" placeholder="Search..." onChange={searchFn} />
+         <table>
             <thead>
-               <tr
-                style={{ backgroundColor: style.headerColor ? style.headerColor : "", 
-                color: style.fontColor ? style.fontColor : "#000" }}>
-
+               <tr>
                   {dataList.slice(0, lastIndex).map((data, index) => (
-                     <th key={index}>
-                        <select className="select"
+                     <th
+                        style={{ backgroundColor: styles && styles.headerColor }}
+                        key={index}>
+                        <select
+                           data-testid="header"
+                           className="select"
                            onChange={e => handleSelectHeader(e, index)}>
                            <option value="">{data.value}</option>
                            {dataList.map((title, index) => (
@@ -114,6 +113,10 @@ export default function Table() {
                         </select>
                      </th>
                   ))}
+
+                  <th style={{ backgroundColor: styles && styles.headerColor }}>
+                     Monthly Salary
+                  </th>
                </tr>
             </thead>
             <tbody>
@@ -127,22 +130,25 @@ export default function Table() {
                   )
                   .slice(indexOfFirstPost, indexOfLastPost)
                   .map((user, index) => (
-                     <tr key={index} 
-                     style={{ backgroundColor: index % 2 === 0 && style.backgroundColor ? style.backgroundColor : "",
-                      color: style.fontColor ? style.fontColor : "#000" }}>
-                        <td>{header0 ? user[header0] : user.id}</td>
-                        <td>{header1 ? user[header1] : user.name}</td>
-                        <td>{header2 ? user[header2] : user.entry_date}</td>
-                        <td>{header3 ? user[header3] : user.salary}</td>
+                     <tr key={index}
+                        style={{
+                           backgroundColor: styles && (index % 2 === 0) ? styles.backgroundColor : "",
+                           color: styles && styles.fontColor
+                        }}>
+                        <td data-testid="td">{header0 ? user[header0] : user.id}</td>
+                        <td data-testid="td">{header1 ? user[header1] : user.name}</td>
+                        <td data-testid="td">{header2 ? user[header2] : user.entry_date}</td>
+                        <td data-testid="td">{header3 ? user[header3] : user.salary}</td>
                         {
                            !md ?
                               <>
-                                 <td>{header4 ? user[header4] : `$ ${(parseFloat((user.salary).replace(/[^\d.]/g, '')) / 12).toFixed(3)}`}</td>
-                                 <td>{header5 ? user[header5] : user.address} </td>
+                                 <td data-testid="td">{header4 ? user[header4] : user.address} </td>
+                                 <td data-testid="td">{header5 ? user[header5] : user.phone} </td>
+
                               </>
                               : ""
                         }
-
+                        <td data-testid="td">$ {typeof user.salary === "string" && (parseFloat((user.salary).replace(/[^\d.]/g, '')) / 12).toFixed(2)}</td>
                      </tr>
                   ))}
             </tbody>
@@ -152,7 +158,6 @@ export default function Table() {
             paginationFn={paginationFn}
             paginationBtns={paginationBtns}
             currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
             postsPerPage={postsPerPage}
             users={users}
          />

@@ -4,8 +4,8 @@
 .sidebar {
   @include mixins.d-f(column, flex-start, flex-start, _, 20px);
   @include mixins.small-screen() {
-    z-index: 100000;
-    width: 100%;
+    z-index: 9999999;
+    width: 100vw;
   }
   width: fit-content;
   border-right: 2px solid #24242432;

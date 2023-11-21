@@ -1,6 +1,6 @@
 import { useState } from "react"
-import AllRoutes from "./Routes"
 import StyleContext from "./Hooks/useContext"
+import AllRoutes from "./Routes"
 
 function App() {
 

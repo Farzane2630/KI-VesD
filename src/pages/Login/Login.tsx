@@ -1,7 +1,7 @@
 import "./Login.scss"
 import React, { useState } from "react";
 import { authenticateUser } from "../../services/AuthService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 const Login: React.FC = () => {
    const [username, setUsername] = useState("");
