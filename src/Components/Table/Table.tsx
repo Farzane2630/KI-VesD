@@ -72,16 +72,17 @@ export default function Table() {
 
    const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-   const searchFn = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSearch(e.target.value.toLowerCase());
-      setCurrentPage(1);
-   };
 
    const paginationFn = (e: React.ChangeEvent<HTMLInputElement>) => {
       setPostsPerPage(Number(e.target.value));
       setCurrentPage(1);
    };
    // pagination functions 👆
+
+   const searchFn = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearch(e.target.value.toLowerCase());
+      setCurrentPage(1);
+   };
 
    //header options
    const dataList = [
@@ -91,6 +92,19 @@ export default function Table() {
       { id: "region", value: "Region" }, { id: "country", value: "Country" }, { id: "latlng", value: "latlng" },
       { id: "personal_quote", value: "Personal Qoutes" }, { id: "birthday", value: "Birthday" }, { id: "favorite_food", value: "Favorite Food" }
    ]
+
+   const currentPageData = users
+      .filter(
+         (user) =>
+            user.name.toLowerCase().includes(search) ||
+            user.entry_date.includes(search) ||
+            user.address.toLowerCase().includes(search) ||
+            user.phone.includes(search)
+      )
+      .slice(indexOfFirstPost, indexOfLastPost);
+
+   const salarySum = currentPageData.reduce((sum, user) => sum + parseFloat(user.salary.replace(/[^\d.]/g, '')), 0);
+
 
    return (
       <main className="table">
@@ -120,15 +134,7 @@ export default function Table() {
                </tr>
             </thead>
             <tbody>
-               {users
-                  .filter(
-                     (user) =>
-                        user.name.toLowerCase().includes(search) ||
-                        user.entry_date.includes(search) ||
-                        user.address.toLowerCase().includes(search) ||
-                        user.phone.includes(search)
-                  )
-                  .slice(indexOfFirstPost, indexOfLastPost)
+               {currentPageData
                   .map((user, index) => (
                      <tr key={index}
                         style={{
@@ -152,6 +158,17 @@ export default function Table() {
                      </tr>
                   ))}
             </tbody>
+
+            <tfoot>
+               <tr style={{
+                           backgroundColor: styles ? styles.backgroundColor : "",
+                           color: styles && styles.fontColor
+                        }}>
+                  <td colSpan={lastIndex}>Total Annual Salary: </td>
+                  <td>${salarySum.toFixed(2)}</td>
+               </tr>
+            </tfoot>
+
          </table>
          <Pagination
             paginate={paginate}

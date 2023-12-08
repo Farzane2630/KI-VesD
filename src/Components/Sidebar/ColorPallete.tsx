@@ -4,7 +4,7 @@ import { useContext, useState } from "react"
 import StyleContext from "../../Hooks/useContext"
 
 
-export default function ColorPallete({ content, customBorder, title }: { content: ContentType, customBorder: String, title: String }) {
+export default function ColorPallete({ content, customBorder, title }: { content: ContentType, customBorder: string, title: string }) {
    const [unitIndex, setUnitIndex] = useState<Number>(0)
    const style = useContext(StyleContext)
 
