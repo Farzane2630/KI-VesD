@@ -10,11 +10,6 @@ const Login: React.FC = () => {
    const navigate = useNavigate();
 
    const handleLogin = async () => {
-         
-         if (!username || !password) {
-            setError('Please enter both username and password.');
-            return;
-         }
       
          const token = await authenticateUser(username, password);
       

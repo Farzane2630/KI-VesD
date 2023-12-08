@@ -9,7 +9,6 @@ export default function Table() {
    const md = useMediaQuery(1100)
    const lastIndex = md ? 4 : 6
    const [users, setUsers] = useState<UsersType>([])
-
    const styles = useContext(StyleContext)
 
    // store header value
